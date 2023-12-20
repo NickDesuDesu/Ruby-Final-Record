@@ -22,9 +22,9 @@ vehicles = CSV_OBJECTS[1]
 #
 def look_for_spot(floor_number)
     for floor in @floors do
-        if floor.floor_number == floor_number
+        if (floor.floor_number == floor_number)
             for p_spot in floor.parking_spots do
-                if p_spot.available == "TRUE"
+                if (p_spot.available == "TRUE")
                     return p_spot
                 end
             end
@@ -33,7 +33,7 @@ def look_for_spot(floor_number)
     return nil
 end
 
-while true
+while (true)
     menu = <<~MENU
         |------------------------------------------|
         | Enter the type of vehicle that you have  |
@@ -42,42 +42,42 @@ while true
         | 2 - Motorcylce                           |
         |------------------------------------------|
     MENU
-    puts menu
+    puts (menu)
 
     choice = gets.chomp
     vehicle = nil
 
     case choice.to_i
-    when 1
-        car_menu = <<~MENU
-            |------------------------------------------|
-            |    Enter the plate number of your car    |
-            |------------------------------------------|
-        MENU
-        puts car_menu
+        when 1
+            car_menu = <<~MENU
+                |------------------------------------------|
+                |    Enter the plate number of your car    |
+                |------------------------------------------|
+            MENU
+            puts (car_menu)
 
-        vehicle = Car.new(gets.chomp)
-        vehicle.engine_sound(0)
-        break
-    when 2
-        motorcyle_menu = <<~MENU
-            |------------------------------------------|
-            | Enter the plate number of your motorcyle |
-            |------------------------------------------|
-        MENU
-        puts motorcyle_menu
-        
-        vehicle = Motorcycle.new(gets.chomp)
-        vehicle.engine_sound(0)
-        vehicles << vehicle
-        break
-    else
-        puts "--!--Please try again--!--"
-        next
-    end
+            vehicle = Car.new(gets.chomp)
+            vehicle.engine_sound(0)
+            break
+        when 2
+            motorcyle_menu = <<~MENU
+                |------------------------------------------|
+                | Enter the plate number of your motorcyle |
+                |------------------------------------------|
+            MENU
+            puts (motorcyle_menu)
+            
+            vehicle = Motorcycle.new(gets.chomp)
+            vehicle.engine_sound(0)
+            vehicles << vehicle
+            break
+        else
+            puts ("--!--Please try again--!--")
+            next
+        end
 end
 
-while true
+while (true)
     menu = <<~MENU
         |------------------------------------------|
         | Select the floor you'd like to park at   |
@@ -90,168 +90,168 @@ while true
         | 6 - Exit                                 |
         |------------------------------------------|
     MENU
-    puts menu
+    puts (menu)
 
     choice = gets.chomp
 
     case choice.to_i
-    when 1
-        parking_spot = look_for_spot("A")
+        when 1
+            parking_spot = look_for_spot("A")
 
-        if parking_spot == nil
-            puts "--!--There is no available parking spot for that floor--!--"
-            next
-        end
+            if (parking_spot == nil)
+                puts ("--!--There is no available parking spot for that floor--!--")
+                next
+            end
 
-        menu = <<~MENU
-        |------------------------------------------|
-        | There are available spots for parking A  |
-        | Do you want to park here? y/n            |
-        |------------------------------------------|
-        MENU
-        puts menu
+            menu = <<~MENU
+            |------------------------------------------|
+            | There are available spots for parking A  |
+            | Do you want to park here? y/n            |
+            |------------------------------------------|
+            MENU
+            puts (menu)
 
-        choice = gets.chomp
+            choice = gets.chomp
 
-        if choice == "y" || choice == "Y"
-            puts "--!--Your Parking Spot id is #{parking_spot.name}--!--"
-            puts vehicle.engine_sound(1)
-            puts puts puts vehicle.calculate_mileage(0.5, 1)
-            vehicle.parking_spot = parking_spot
-            parking_spot = vehicle
+            if (choice == "y" || choice == "Y")
+                puts ("--!--Your Parking Spot id is #{parking_spot.name}--!--")
+                puts (vehicle.engine_sound(1))
+                puts puts puts (vehicle.calculate_mileage(0.5, 1))
+                vehicle.parking_spot = parking_spot
+                parking_spot = vehicle
+                break
+            else 
+                next
+            end
+
             break
-        else 
-            next
-        end
+        when 2
+            parking_spot = look_for_spot("B")
 
-        break
-    when 2
-        parking_spot = look_for_spot("B")
+            if (parking_spot == nil)
+                puts ("--!--There is no available parking spot for that floor--!--")
+                next
+            end
 
-        if parking_spot == nil
-            puts "--!--There is no available parking spot for that floor--!--"
-            next
-        end
+            menu = <<~MENU
+            |------------------------------------------|
+            | There are available spots for parking B  |
+            | Do you want to park here? y/n            |
+            |------------------------------------------|
+            MENU
+            puts (menu)
 
-        menu = <<~MENU
-        |------------------------------------------|
-        | There are available spots for parking B  |
-        | Do you want to park here? y/n            |
-        |------------------------------------------|
-        MENU
-        puts menu
+            choice = gets.chomp
 
-        choice = gets.chomp
+            if (choice == "y" || choice == "Y")
+                puts ("--!--Your Parking Spot id is #{parking_spot.name}--!--")
+                vehicle.parking_spot = parking_spot
+                parking_spot = vehicle
+                puts (vehicle.engine_sound(1))
+                puts puts puts (vehicle.calculate_mileage(0.5, 1))
+                break
+            else 
+                next
+            end
 
-        if choice == "y" || choice == "Y"
-            puts "--!--Your Parking Spot id is #{parking_spot.name}--!--"
-            vehicle.parking_spot = parking_spot
-            parking_spot = vehicle
-            puts vehicle.engine_sound(1)
-            puts puts puts vehicle.calculate_mileage(0.5, 1)
             break
-        else 
-            next
-        end
+        when 3
+            parking_spot = look_for_spot("C")
 
-        break
-    when 3
-        parking_spot = look_for_spot("C")
+            if (parking_spot == nil)
+                puts ("--!--There is no available parking spot for that floor--!--")
+                next
+            end
 
-        if parking_spot == nil
-            puts "--!--There is no available parking spot for that floor--!--"
-            next
-        end
+            menu = <<~MENU
+            |------------------------------------------|
+            | There are available spots for parking C  |
+            | Do you want to park here? y/n            |
+            |------------------------------------------|
+            MENU
+            puts (menu)
 
-        menu = <<~MENU
-        |------------------------------------------|
-        | There are available spots for parking C  |
-        | Do you want to park here? y/n            |
-        |------------------------------------------|
-        MENU
-        puts menu
+            choice = gets.chomp
 
-        choice = gets.chomp
-
-        if choice == "y" || choice == "Y"
-            puts "--!--Your Parking Spot id is #{parking_spot.name}--!--"
-            puts vehicle.engine_sound(1)
-            puts puts puts vehicle.calculate_mileage(0.5, 1)
-            vehicle.parking_spot = parking_spot
-            parking_spot = vehicle
+            if (choice == "y" || choice == "Y")
+                puts ("--!--Your Parking Spot id is #{parking_spot.name}--!--")
+                puts (vehicle.engine_sound(1))
+                puts puts puts (vehicle.calculate_mileage(0.5, 1))
+                vehicle.parking_spot = parking_spot
+                parking_spot = vehicle
+                break
+            else 
+                next
+            end
+            
             break
-        else 
-            next
-        end
-        
-        break
-    when 4
-        parking_spot = look_for_spot("D")
+        when 4
+            parking_spot = look_for_spot("D")
 
-        if parking_spot == nil
-            puts "--!--There is no available parking spot for that floor--!--"
-            next
-        end
+            if (parking_spot == nil)
+                puts ("--!--There is no available parking spot for that floor--!--")
+                next
+            end
 
-        menu = <<~MENU
-        |------------------------------------------|
-        | There are available spots for parking D  |
-        | Do you want to park here? y/n            |
-        |------------------------------------------|
-        MENU
-        puts menu
+            menu = <<~MENU
+            |------------------------------------------|
+            | There are available spots for parking D  |
+            | Do you want to park here? y/n            |
+            |------------------------------------------|
+            MENU
+            puts (menu)
 
-        choice = gets.chomp
+            choice = gets.chomp
 
-        if choice == "y" || choice == "Y"
-            puts "--!--Your Parking Spot id is #{parking_spot.name}--!--"
-            puts vehicle.engine_sound(1)
-            puts puts puts vehicle.calculate_mileage(0.5, 1)
-            vehicle.parking_spot = parking_spot
-            parking_spot = vehicle
+            if (choice == "y" || choice == "Y")
+                puts ("--!--Your Parking Spot id is #{parking_spot.name}--!--")
+                puts (vehicle.engine_sound(1))
+                puts puts puts (vehicle.calculate_mileage(0.5, 1))
+                vehicle.parking_spot = parking_spot
+                parking_spot = vehicle
+                break
+            else 
+                next
+            end
+
             break
-        else 
-            next
-        end
+        when 5
+            parking_spot = look_for_spot("E")
 
-        break
-    when 5
-        parking_spot = look_for_spot("E")
+            if (parking_spot == nil)
+                puts ("--!--There is no available parking spot for that floor--!--")
+                next
+            end
 
-        if parking_spot == nil
-            puts "--!--There is no available parking spot for that floor--!--"
-            next
-        end
+            menu = <<~MENU
+            |------------------------------------------|
+            | There are available spots for parking E  |
+            | Do you want to park here? y/n            |
+            |------------------------------------------|
+            MENU
+            puts (menu)
 
-        menu = <<~MENU
-        |------------------------------------------|
-        | There are available spots for parking E  |
-        | Do you want to park here? y/n            |
-        |------------------------------------------|
-        MENU
-        puts menu
+            choice = gets.chomp
 
-        choice = gets.chomp
+            if (choice == "y" || choice == "Y")
+                puts ("--!--Your Parking Spot id is #{parking_spot.name}--!--")
+                puts (vehicle.engine_sound(1))
+                puts puts puts (vehicle.calculate_mileage(0.5, 1))
+                vehicle.parking_spot = parking_spot
+                parking_spot = vehicle
+                break
+            else 
+                next
+            end
 
-        if choice == "y" || choice == "Y"
-            puts "--!--Your Parking Spot id is #{parking_spot.name}--!--"
-            puts vehicle.engine_sound(1)
-            puts puts puts vehicle.calculate_mileage(0.5, 1)
-            vehicle.parking_spot = parking_spot
-            parking_spot = vehicle
             break
-        else 
+        when 6
+            puts ("--!--Thank You and Come Again--!--")
+            break
+        else
+            puts ("--!--Please try again--!--")
             next
         end
-
-        break
-    when 6
-        puts "--!--Thank You and Come Again--!--"
-        break
-    else
-        puts "--!--Please try again--!--"
-        next
-    end
 end
 
 
