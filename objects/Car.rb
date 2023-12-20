@@ -21,7 +21,7 @@ class Car < Vehicle
                     else
                         "Zoooom Zoooom...."
                     end
-            puts("Vroom Vroom...")  # Bug: Always prints "Vroom Vroom..." instead of the calculated sound
+            puts(sound)  # Bug: Always prints "Vroom Vroom..." instead of the calculated sound
         end
 
 
